@@ -15,7 +15,7 @@ const courses = [
     students: 2431,
     price: "PKR 8,999",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=600&h=400",
-    level: "Beginner",
+    level: "Beginner" as const,
   },
   {
     title: "UI/UX Design Mastery",
@@ -25,7 +25,7 @@ const courses = [
     students: 1892,
     price: "PKR 12,999",
     image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=600&h=400",
-    level: "Intermediate",
+    level: "Intermediate" as const,
   },
   {
     title: "Python Programming for Professionals",
@@ -35,7 +35,7 @@ const courses = [
     students: 2501,
     price: "PKR 15,999",
     image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&q=80&w=600&h=400",
-    level: "Advanced",
+    level: "Advanced" as const,
   },
   {
     title: "Data Science & Machine Learning",
@@ -45,7 +45,7 @@ const courses = [
     students: 1521,
     price: "PKR 18,999",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600&h=400",
-    level: "Advanced",
+    level: "Advanced" as const,
   },
 ];
 

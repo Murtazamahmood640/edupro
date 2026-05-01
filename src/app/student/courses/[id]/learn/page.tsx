@@ -4,7 +4,20 @@ import React, { useState } from "react";
 import { CheckCircle, Lock, PlayCircle, FileText, ChevronDown, ChevronUp, BookOpen, Clock, MessageSquare, Download, Share2 } from "lucide-react";
 import Link from "next/link";
 
-const curriculum = [
+type Lesson = {
+  title: string;
+  duration: string;
+  done: boolean;
+  active?: boolean;
+  locked?: boolean;
+};
+
+type Section = {
+  section: string;
+  lessons: Lesson[];
+};
+
+const curriculum: Section[] = [
   {
     section: "Introduction to UI/UX",
     lessons: [
