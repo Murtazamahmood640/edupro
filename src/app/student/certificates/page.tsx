@@ -81,14 +81,14 @@ export default function StudentCertificates() {
               </div>
 
               {/* Actions */}
-              <div className="p-4 flex gap-2">
-                <button className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-slate-900 text-white text-xs font-bold rounded-xl hover:bg-slate-700 transition-all">
-                  <Download className="w-3.5 h-3.5" /> Download PDF
-                </button>
-                <button className="flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 text-slate-600 text-xs font-bold rounded-xl hover:bg-slate-50 transition-all">
-                  <Share2 className="w-3.5 h-3.5" /> Share
-                </button>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+              <button className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-slate-900 text-white text-xs font-bold rounded-xl hover:bg-slate-700 transition-all">
+                <Download className="w-3.5 h-3.5" /> Download PDF
+              </button>
+              <button className="flex-1 flex items-center justify-center gap-2 py-2.5 border border-slate-200 text-slate-600 text-xs font-bold rounded-xl hover:bg-slate-50 transition-all">
+                <Share2 className="w-3.5 h-3.5" /> Share
+              </button>
+            </div>
             </div>
           ))}
         </div>
