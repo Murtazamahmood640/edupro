@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  --color-edu-indigo: #4f45e5;
+  --color-edu-violet: #7c3aed;
+  --color-edu-amber: #f59e0b;
+  --color-edu-emerald: #10b981;
+  --color-edu-slate: #1e293b;
+  --color-edu-background: #fbfafc;
+
+  --animate-float: float 3s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+:root {
+  --background: #fbfafc;
+  --foreground: #1e293b;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.glass-nav {
+  @apply sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-edu-indigo text-white rounded-lg font-semibold hover:bg-edu-indigo/90 transition-all active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-white text-edu-indigo border border-edu-indigo rounded-lg font-semibold hover:bg-edu-indigo/5 transition-all active:scale-95;
+}
+
+.section-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+}
+
+.heading-h1 {
+  @apply font-display text-4xl md:text-6xl font-bold tracking-tight text-slate-900;
+}
+
+.heading-h2 {
+  @apply font-display text-3xl md:text-4xl font-bold tracking-tight text-slate-900;
+}
+
+.heading-h3 {
+  @apply font-display text-xl md:text-2xl font-semibold text-slate-900;
 }
