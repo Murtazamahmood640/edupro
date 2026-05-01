@@ -10,18 +10,18 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Newsletter Banner */}
-        <div className="bg-gradient-to-r from-edu-indigo to-edu-violet rounded-3xl p-8 md:p-10 mb-16 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
+        <div className="bg-gradient-to-r from-edu-indigo to-edu-violet rounded-3xl p-6 md:p-10 mb-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="text-left w-full md:w-auto">
             <h3 className="font-display text-2xl font-bold text-white mb-1">Stay Ahead with EduPro</h3>
             <p className="text-indigo-200 text-sm">Get new courses, tips & resources delivered to your inbox.</p>
           </div>
-          <div className="flex w-full md:w-auto gap-3">
+          <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
             <input
               type="email"
               placeholder="Enter your email..."
-              className="flex-1 md:w-64 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white/30 text-sm"
+              className="flex-1 w-full sm:w-auto md:w-64 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white/30 text-sm"
             />
-            <button className="px-5 py-3 bg-white text-edu-indigo rounded-xl font-bold hover:bg-indigo-50 transition-all flex items-center gap-2 text-sm flex-shrink-0">
+            <button className="w-full sm:w-auto px-5 py-3 bg-white text-edu-indigo rounded-xl font-bold hover:bg-indigo-50 transition-all flex items-center justify-center gap-2 text-sm flex-shrink-0">
               <Send className="w-4 h-4" /> Subscribe
             </button>
           </div>

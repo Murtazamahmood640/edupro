@@ -73,7 +73,8 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-slate-600 p-2 rounded-lg hover:bg-slate-100 transition-colors"
+            className="md:hidden flex items-center justify-center text-slate-700 bg-slate-100 hover:bg-slate-200 p-2 rounded-xl transition-all"
+            aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

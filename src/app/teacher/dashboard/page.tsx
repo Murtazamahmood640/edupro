@@ -26,19 +26,19 @@ export default function TeacherDashboard() {
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-8 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-6 md:p-8 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-edu-indigo/20 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3" />
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <p className="text-slate-400 font-medium mb-1">Welcome back, Teacher 👋</p>
-            <h1 className="font-display text-3xl font-bold mb-2">Hello, Sarah Jenkins!</h1>
-            <p className="text-slate-300 max-w-lg">You have <span className="text-edu-amber font-bold">2 new appointment requests</span> and <span className="text-edu-emerald font-bold">4 new enrollments</span> this week.</p>
+            <h1 className="font-display text-2xl md:text-3xl font-bold mb-2">Hello, Sarah Jenkins!</h1>
+            <p className="text-slate-300 max-w-lg text-sm md:text-base">You have <span className="text-edu-amber font-bold">2 new appointment requests</span> and <span className="text-edu-emerald font-bold">4 new enrollments</span> this week.</p>
           </div>
-          <div className="flex gap-3">
-            <Link href="/teacher/courses/create" className="flex items-center gap-2 bg-edu-indigo text-white px-5 py-2.5 rounded-xl font-bold hover:bg-edu-indigo/90 transition-all text-sm">
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <Link href="/teacher/courses/create" className="flex items-center justify-center gap-2 bg-edu-indigo text-white px-5 py-3 md:py-2.5 rounded-xl font-bold hover:bg-edu-indigo/90 transition-all text-sm w-full sm:w-auto">
               <PlusCircle className="w-4 h-4" /> New Course
             </Link>
-            <Link href="/teacher/appointments" className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-5 py-2.5 rounded-xl font-bold hover:bg-white/20 transition-all text-sm">
+            <Link href="/teacher/appointments" className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-5 py-3 md:py-2.5 rounded-xl font-bold hover:bg-white/20 transition-all text-sm w-full sm:w-auto">
               <Bell className="w-4 h-4" /> Requests
             </Link>
           </div>
