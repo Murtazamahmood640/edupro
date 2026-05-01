@@ -38,7 +38,7 @@ export default function StudentQuizzes() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: "Total Quizzes", value: total, icon: Brain, color: "bg-indigo-50 text-edu-indigo" },
           { label: "Passed", value: passed, icon: CheckCircle, color: "bg-emerald-50 text-edu-emerald" },
@@ -71,16 +71,18 @@ export default function StudentQuizzes() {
       </div>
 
       {/* Quiz List */}
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {filtered.map((quiz) => {
           const config = statusConfig[quiz.status];
           const StatusIcon = config.icon;
           const isActionable = quiz.status === "Not Started" || quiz.status === "In Progress" || quiz.status === "Failed";
 
           return (
-            <div key={quiz.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex gap-4 items-center">
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${config.bg}`}>
-                <StatusIcon className={`w-6 h-6 ${config.color}`} />
+            <div key={quiz.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col justify-between h-full">
+              <div className="flex items-center gap-4 mb-3">
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${config.bg}`}>
+                  <StatusIcon className={`w-6 h-6 ${config.color}`} />
+                </div>
               </div>
 
               <div className="flex-1 min-w-0">

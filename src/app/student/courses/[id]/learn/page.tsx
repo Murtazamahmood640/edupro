@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CheckCircle, Lock, PlayCircle, FileText, ChevronDown, ChevronUp, BookOpen, Clock, MessageSquare, Download, Share2 } from "lucide-react";
+import { CheckCircle, Lock, PlayCircle, FileText, ChevronDown, ChevronUp, BookOpen, Clock, MessageSquare, Download, Share2, Menu, X } from "lucide-react";
 import Link from "next/link";
 
 type Lesson = {
@@ -58,45 +58,52 @@ export default function LearnPage() {
   const [openSection, setOpenSection] = useState(1);
   const [activeTab, setActiveTab] = useState("overview");
   const [notes, setNotes] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
+
 
   const totalDone = curriculum.flatMap((s) => s.lessons).filter((l) => l.done).length;
   const total = curriculum.flatMap((s) => s.lessons).length;
   const progress = Math.round((totalDone / total) * 100);
 
   return (
-    <div className="h-[calc(100vh-2rem)] flex flex-col -m-4 md:-m-6 lg:-m-8 bg-slate-50">
-      {/* Top Bar */}
-      <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 flex-shrink-0 z-10 shadow-sm">
-        <div className="flex items-center gap-4">
-          <Link href="/student/dashboard" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 transition-colors">
-            <ChevronDown className="w-5 h-5 rotate-90" />
-          </Link>
-          <div>
-            <p className="text-xs text-edu-indigo font-bold uppercase tracking-wider mb-0.5">UI/UX Design Mastery</p>
-            <h1 className="text-lg font-bold text-slate-900 leading-none">Creating User Personas</h1>
-          </div>
-        </div>
-        <div className="flex items-center gap-6">
-          <div className="hidden md:flex flex-col items-end">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold text-slate-700">Course Progress</span>
-              <span className="text-xs font-bold text-edu-indigo">{progress}%</span>
-            </div>
-            <div className="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-edu-indigo to-edu-violet rounded-full" style={{ width: `${progress}%` }} />
+    <div className="min-h-screen flex flex-col bg-slate-50 p-4 md:p-6 lg:p-8">
+
+        {/* Top Bar */}
+        <div className="flex flex-wrap gap-4 items-center justify-between px-6 py-4 bg-white border-b border-slate-200 flex-shrink-0 z-10 shadow-sm">
+          <div className="flex items-center gap-4 flex-wrap">
+            <Link href="/student/dashboard" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 transition-colors">
+              <ChevronDown className="w-5 h-5 rotate-90" />
+            </Link>
+            <div>
+              <p className="text-xs text-edu-indigo font-bold uppercase tracking-wider mb-0.5">UI/UX Design Mastery</p>
+              <h1 className="text-lg font-bold text-slate-900 leading-none">Creating User Personas</h1>
             </div>
           </div>
-          <button className="px-5 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-xl hover:bg-slate-800 transition-all shadow-md">
-            Mark as Complete
-          </button>
+          <div className="flex items-center gap-6">
+            <div className="hidden md:flex flex-col items-end">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-bold text-slate-700">Course Progress</span>
+                <span className="text-xs font-bold text-edu-indigo">{progress}%</span>
+              </div>
+              <div className="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-edu-indigo to-edu-violet rounded-full" style={{ width: `${progress}%` }} />
+              </div>
+            </div>
+            <button className="px-5 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-xl hover:bg-slate-800 transition-all shadow-md w-full md:w-auto">
+              Mark as Complete
+            </button>
+            {/* Mobile menu button */}
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2 text-slate-600 rounded-lg hover:bg-slate-100">
+              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
-      </div>
 
       <div className="flex-1 flex overflow-hidden">
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col overflow-y-auto">
           {/* Video Player Area */}
-          <div className="bg-slate-900 flex-shrink-0 relative overflow-hidden group">
+          <div className="bg-slate-900 relative overflow-hidden group aspect-video">
             <div className="absolute inset-0 bg-gradient-to-tr from-slate-900 via-slate-800 to-edu-indigo/20 opacity-80" />
             <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1200&h=675" alt="Video cover" className="w-full h-full object-cover mix-blend-overlay opacity-40" />
             
@@ -142,7 +149,7 @@ export default function LearnPage() {
 
             <div className="p-8 max-w-4xl">
               {activeTab === "overview" && (
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <h2 className="text-2xl font-display font-bold text-slate-900">Creating User Personas</h2>
                   <div className="flex items-center gap-4 text-sm text-slate-500 pb-6 border-b border-slate-100">
                     <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 16 Mins</span>
@@ -187,13 +194,14 @@ export default function LearnPage() {
               {activeTab === "resources" && (
                 <div className="space-y-4">
                   <h3 className="font-bold text-slate-900 mb-4">Downloadable Resources</h3>
+                  {/* Stats */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {[
                       { name: "Persona_Template.fig", size: "2.4 MB" },
                       { name: "Research_Synthesis_Guide.pdf", size: "1.1 MB" },
                     ].map((file, i) => (
                       <div key={i} className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-edu-indigo/30 transition-colors group cursor-pointer">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-6 flex-wrap">
                           <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm text-edu-indigo">
                             <FileText className="w-5 h-5" />
                           </div>
@@ -222,7 +230,7 @@ export default function LearnPage() {
         </div>
 
         {/* Curriculum Sidebar */}
-        <div className="hidden lg:flex flex-col w-80 xl:w-[400px] border-l border-slate-200 bg-white shadow-[-4px_0_24px_-10px_rgba(0,0,0,0.05)] z-20 flex-shrink-0">
+        <div className="hidden md:flex flex-col w-80 xl:w-[400px] border-l border-slate-200 bg-white shadow-[-4px_0_24px_-10px_rgba(0,0,0,0.05)] z-20 flex-shrink-0">
           <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
             <h2 className="font-display font-bold text-slate-900 text-lg">Course Content</h2>
             <p className="text-sm text-slate-500 mt-1">{totalDone} of {total} lessons completed</p>
@@ -280,6 +288,40 @@ export default function LearnPage() {
             ))}
           </div>
         </div>
+        {/* Mobile Sidebar */}
+        {mobileOpen && (
+          <div className="fixed inset-0 z-50 flex md:hidden">
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+            <aside className="relative z-10 w-80 bg-white flex flex-col h-full shadow-lg">
+              <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
+                <h2 className="font-display font-bold text-slate-900 text-lg">Course Content</h2>
+                <button onClick={() => setMobileOpen(false)} className="p-2 text-slate-600 rounded-lg hover:bg-slate-100"><X className="w-5 h-5" /></button>
+              </div>
+              <div className="flex-1 overflow-y-auto p-4">
+                {curriculum.map((section, si) => (
+                  <div key={si} className="mb-4">
+                    <button onClick={() => setOpenSection(openSection === si ? -1 : si)} className="w-full flex items-center justify-between py-2 text-left">
+                      <span className="font-medium text-slate-900">{section.section}</span>
+                      <span className={`p-1 rounded ${openSection === si ? "bg-indigo-50 text-edu-indigo" : "bg-slate-100 text-slate-400"}`}>
+                        {openSection === si ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </span>
+                    </button>
+                    {openSection === si && (
+                      <div className="mt-2 space-y-2">
+                        {section.lessons.map((lesson, li) => (
+                          <div key={li} className="flex items-center gap-2 text-sm">
+                            {lesson.locked ? <Lock className="w-3 h-3 text-slate-300" /> : lesson.done ? <CheckCircle className="w-3 h-3 text-emerald-500" /> : <PlayCircle className="w-3 h-3 text-slate-400" />}
+                            <span>{lesson.title}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </aside>
+          </div>
+        )}
       </div>
     </div>
   );
