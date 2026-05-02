@@ -1,124 +1,156 @@
 "use client";
 
 import React from "react";
-import { ShieldCheck, Target, GraduationCap, TrendingUp, Award, Zap } from "lucide-react";
+import { ShieldCheck, Target, Award, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 const features = [
   {
-    icon: <ShieldCheck className="w-8 h-8" />,
-    title: "Expert Instructors",
-    description: "Learn from industry professionals with years of real-world experience.",
-    color: "text-blue-600",
-    bg: "bg-blue-50",
+    icon: <ShieldCheck className="w-6 h-6 text-primary" />,
+    title: "Elite Instructors",
+    description:
+      "Learn from Cambridge-certified examiners and industry-leading language specialists.",
   },
   {
-    icon: <Target className="w-8 h-8" />,
-    title: "Structured Learning",
-    description: "Our curriculum is designed to take you from beginner to advanced smoothly.",
-    color: "text-edu-indigo",
-    bg: "bg-edu-indigo/5",
+    icon: <Target className="w-6 h-6 text-primary" />,
+    title: "Precision Curriculum",
+    description:
+      "Our structured modules are mapped directly to the latest O/A Level and IELTS syllabi.",
   },
   {
-    icon: <Award className="w-8 h-8" />,
-    title: "Premium Certificates",
-    description: "Earn recognized certificates that boost your career and resume.",
-    color: "text-edu-amber",
-    bg: "bg-edu-amber/5",
+    icon: <Award className="w-6 h-6 text-primary" />,
+    title: "Verified Excellence",
+    description:
+      "Earn certificates recognized by top institutions to validate your academic mastery.",
   },
   {
-    icon: <TrendingUp className="w-8 h-8" />,
-    title: "Progress Tracking",
-    description: "Visualize your growth with our advanced learning analytics dashboard.",
-    color: "text-edu-emerald",
-    bg: "bg-edu-emerald/5",
+    icon: <TrendingUp className="w-6 h-6 text-primary" />,
+    title: "Insightful Analytics",
+    description:
+      "Track your learning trajectory with detailed performance reports and predictive scoring.",
   },
+];
+
+const progressItems = [
+  { label: "Video Modules",       value: "12 / 16", pct: 75 },
+  { label: "Practice Papers",     value: "8 / 10",  pct: 80 },
+  { label: "Live Workshops",      value: "3 / 4",   pct: 75 },
 ];
 
 const WhyChoose = () => {
   return (
-    <section className="section-container">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-edu-amber/10 text-edu-amber rounded-full mb-6">
-            <Zap className="w-4 h-4 fill-current" />
-            <span className="text-sm font-bold tracking-wider uppercase">WHY CHOOSE US</span>
-          </div>
-          <h2 className="heading-h2 mb-6">Why Choose <span className="text-edu-indigo">EduPro?</span></h2>
-          <p className="text-slate-600 text-lg mb-10 leading-relaxed">
-            We provide a unique learning experience that combines theoretical knowledge with practical hands-on projects, ensuring you are job-ready from day one.
-          </p>
+    <section className="bg-white py-24 relative overflow-hidden">
+      {/* Decorative blobs */}
+      <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-primary/5 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2 pointer-events-none" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="space-y-4"
-              >
-                <div className={`${feature.bg} ${feature.color} w-14 h-14 rounded-2xl flex items-center justify-center`}>
-                  {feature.icon}
-                </div>
-                <h3 className="heading-h3">{feature.title}</h3>
-                <p className="text-slate-500 leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
-        <div className="relative">
-          <div className="absolute inset-0 bg-edu-indigo/5 rounded-3xl -rotate-3 scale-105 -z-10" />
-          <div className="bg-white p-8 rounded-3xl shadow-2xl border border-slate-100 relative">
-            <div className="space-y-8">
-              <div className="flex items-center justify-between">
-                <h4 className="font-display font-bold text-slate-900">Your Learning Progress</h4>
-                <span className="text-edu-indigo font-bold">72% Completed</span>
+          {/* ── Left Content ─────────────────────────────── */}
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 text-primary rounded-lg text-[10px] font-black uppercase tracking-widest mb-6 border border-primary-100">
+              The EduPro Advantage
+            </div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-black text-gray-900 leading-tight tracking-tight mb-6"
+            >
+              Engineered for <br />
+              <span className="text-primary">Academic Superiority</span>
+            </motion.h2>
+
+            <p className="text-gray-500 text-lg leading-relaxed mb-12 max-w-xl">
+              We don&apos;t just teach subjects; we architect success. Our platform combines 
+              theoretical mastery with strategic exam techniques.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary/20 hover:shadow-xl transition-all group"
+                >
+                  <div className="w-12 h-12 bg-primary-50 border border-primary-100 rounded-lg flex items-center justify-center mb-5 group-hover:bg-primary transition-all">
+                    <div className="group-hover:text-white transition-colors">
+                      {feature.icon}
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-gray-900 text-sm mb-2">{feature.title}</h3>
+                  <p className="text-gray-400 text-xs leading-relaxed">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Right — Progress Visualization ────────────── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-white border border-gray-100 rounded-2xl p-8 shadow-2xl shadow-primary/5 relative overflow-hidden"
+          >
+            {/* Pattern overlay */}
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
+              style={{ backgroundImage: "repeating-linear-gradient(45deg, #002366 0px, #002366 1px, transparent 1px, transparent 10px)" }} />
+            
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="font-black text-gray-900 text-sm uppercase tracking-widest">Mastery Level</h4>
+                <span className="text-primary font-black text-sm">72%</span>
               </div>
-              <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
+
+              <div className="h-3 w-full bg-gray-50 rounded-full overflow-hidden mb-10 border border-gray-100">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: "72%" }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="h-full bg-edu-indigo rounded-full"
+                  transition={{ duration: 1.5, ease: "circOut" }}
+                  className="h-full bg-primary rounded-full shadow-[0_0_12px_rgba(0,35,102,0.3)]"
                 />
               </div>
 
-              <div className="space-y-4">
-                {[
-                  { label: "Video Lessons", value: "12/16", color: "bg-blue-500" },
-                  { label: "Quizzes & Tests", value: "8/10", color: "bg-edu-amber" },
-                  { label: "Projects Completed", value: "3/4", color: "bg-edu-emerald" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl">
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-2 h-2 rounded-full ${item.color}`} />
-                      <span className="font-medium text-slate-700">{item.label}</span>
+              <div className="space-y-5">
+                {progressItems.map((item, i) => (
+                  <div key={i} className="p-5 bg-gray-50 border border-gray-100 rounded-xl hover:border-primary/20 transition-colors">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-bold text-gray-600">{item.label}</span>
+                      <span className="text-xs font-black text-primary">{item.value}</span>
                     </div>
-                    <span className="font-bold text-slate-900">{item.value}</span>
+                    <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${item.pct}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: i * 0.2 }}
+                        className="h-full bg-primary rounded-full"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-4 border-t border-slate-100">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-edu-indigo rounded-xl flex items-center justify-center">
-                    <Award className="text-white w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900">Certificate Ready!</p>
-                    <p className="text-xs text-slate-500">Download your certificate now.</p>
-                  </div>
-                  <button className="ml-auto px-4 py-2 bg-edu-indigo text-white text-sm font-bold rounded-lg hover:bg-edu-indigo/90 transition-all">
-                    Download
-                  </button>
+              <div className="mt-8 pt-8 border-t border-gray-100 flex items-center gap-4">
+                <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 shrink-0">
+                  <Award className="text-white w-6 h-6" />
                 </div>
+                <div className="flex-1">
+                  <p className="text-xs font-black text-gray-900 uppercase tracking-widest">Certificate Ready</p>
+                  <p className="text-[10px] text-gray-400 font-bold mt-0.5">Advanced O-Level Mathematics</p>
+                </div>
+                <button className="px-5 py-2.5 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary-600 transition-all shadow-lg shadow-primary/20">
+                  Claim
+                </button>
               </div>
             </div>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

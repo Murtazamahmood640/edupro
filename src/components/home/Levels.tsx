@@ -1,90 +1,179 @@
 "use client";
 
 import React from "react";
-import { Compass, Rocket, Zap, Trophy, ArrowRight } from "lucide-react";
+import { Compass, GraduationCap, Trophy, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 const levels = [
   {
-    icon: <Compass className="w-8 h-8" />,
-    title: "Beginner",
-    subtitle: "Start Basics",
-    description: "Build a strong foundation with our fundamental courses.",
+    icon: <Compass className="w-7 h-7 text-primary" />,
+    title: "O Levels",
+    subtitle: "Core Foundation",
+    description:
+      "Master the fundamentals of academic subjects with certified specialists, past-paper walkthroughs, and structured revision.",
     courses: 25,
-    color: "bg-emerald-500",
-    text: "text-emerald-600",
-    bg: "bg-emerald-50",
   },
   {
-    icon: <Rocket className="w-8 h-8" />,
-    title: "Intermediate",
-    subtitle: "Go Deeper",
-    description: "Expand your skills and work on real-world projects.",
+    icon: <GraduationCap className="w-7 h-7 text-white" />,
+    title: "A Levels",
+    subtitle: "Advanced Mastery",
+    description:
+      "Deep-dive into specialised streams with direct examiner insights, essay coaching, and A* strategies.",
     courses: 38,
-    color: "bg-edu-indigo",
-    text: "text-edu-indigo",
-    bg: "bg-edu-indigo/5",
+    highlighted: true,
   },
   {
-    icon: <Trophy className="w-8 h-8" />,
-    title: "Advanced",
-    subtitle: "Master & Lead",
-    description: "Become an expert and lead high-impact technical initiatives.",
-    courses: 42,
-    color: "bg-edu-amber",
-    text: "text-edu-amber",
-    bg: "bg-edu-amber/5",
+    icon: <Trophy className="w-7 h-7 text-primary" />,
+    title: "University Prep",
+    subtitle: "Elite Placement",
+    description:
+      "Personalised coaching for top-tier global university admissions, SAT/IELTS prep, and personal statement support.",
+    courses: 15,
   },
 ];
 
 const Levels = () => {
   return (
     <section className="section-container">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
         <div className="max-w-2xl">
-          <h2 className="heading-h2 mb-4">Choose Your <span className="text-edu-indigo">Level</span></h2>
-          <p className="text-slate-600 text-lg">
-            We have learning paths for everyone, whether you are just starting or looking to master advanced concepts.
-          </p>
+          <span className="badge-primary mb-4">Structured Excellence</span>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.05 }}
+            className="heading-h2 mt-4 mb-4"
+          >
+            Find Your{" "}
+            <span className="text-black">Academic Path</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-edu-slate-500 text-base leading-relaxed"
+          >
+            Whether you are building foundations or preparing for elite placements,
+            we have a meticulously designed path for your success.
+          </motion.p>
         </div>
-        <Link href="/levels" className="text-edu-indigo font-bold hover:underline flex items-center space-x-1">
-          <span>View All Levels</span>
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          <Link
+            href="/courses"
+            className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary-600 transition-all active:scale-95 shadow-md shadow-primary/25"
+          >
+            Explore All Paths
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {levels.map((level, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group cursor-pointer"
           >
-            <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-100/50 hover:shadow-2xl hover:shadow-edu-indigo/10 transition-all duration-500 relative overflow-hidden h-full flex flex-col">
-              <div className={`absolute top-0 right-0 w-32 h-32 ${level.bg} rounded-bl-[5rem] -mr-8 -mt-8 transition-transform group-hover:scale-110`} />
-              
-              <div className={`${level.bg} ${level.text} w-16 h-16 rounded-2xl flex items-center justify-center mb-8 relative z-10`}>
+            <div
+              className={`relative rounded-2xl p-8 h-full flex flex-col border transition-all duration-300 hover:-translate-y-1.5 group ${
+                level.highlighted
+                  ? "bg-primary border-primary shadow-xl shadow-primary/25 text-white"
+                  : "bg-white border-edu-slate-100 shadow-sm hover:shadow-lg hover:shadow-primary/8"
+              }`}
+            >
+              {/* Popular badge */}
+              {level.highlighted && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="px-4 py-1 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-full">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+
+              {/* Icon */}
+              <div
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
+                  level.highlighted
+                    ? "bg-white/15 border border-white/20"
+                    : "bg-primary-50 border border-primary-100"
+                }`}
+              >
                 {level.icon}
               </div>
 
-              <div className="mb-4 relative z-10">
-                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${level.bg} ${level.text}`}>
-                  {level.subtitle}
-                </span>
-              </div>
+              {/* Subtitle tag */}
+              <span
+                className={`text-[10px] font-black uppercase tracking-widest mb-3 ${
+                  level.highlighted ? "text-white/60" : "text-primary"
+                }`}
+              >
+                {level.subtitle}
+              </span>
 
-              <h3 className="heading-h2 text-2xl mb-4 group-hover:text-edu-indigo transition-colors">{level.title}</h3>
-              <p className="text-slate-500 mb-8 flex-grow">{level.description}</p>
+              {/* Title */}
+              <h3
+                className={`text-2xl font-black mb-4 tracking-tight ${
+                  level.highlighted ? "text-white" : "text-edu-slate-900"
+                }`}
+              >
+                {level.title}
+              </h3>
 
-              <div className="flex items-center justify-between pt-6 border-t border-slate-50 mt-auto">
-                <span className="font-bold text-slate-900">{level.courses} Courses</span>
-                <div className={`${level.color} p-3 rounded-xl text-white shadow-lg`}>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              {/* Description */}
+              <p
+                className={`text-sm leading-relaxed flex-1 mb-8 ${
+                  level.highlighted ? "text-white/70" : "text-edu-slate-500"
+                }`}
+              >
+                {level.description}
+              </p>
+
+              {/* Footer */}
+              <div
+                className={`flex items-center justify-between pt-6 border-t ${
+                  level.highlighted ? "border-white/15" : "border-edu-slate-100"
+                }`}
+              >
+                <div>
+                  <span
+                    className={`text-2xl font-black block leading-none ${
+                      level.highlighted ? "text-white" : "text-edu-slate-900"
+                    }`}
+                  >
+                    {level.courses}
+                  </span>
+                  <span
+                    className={`text-[10px] font-bold uppercase tracking-widest mt-1 block ${
+                      level.highlighted ? "text-white/50" : "text-edu-slate-400"
+                    }`}
+                  >
+                    Courses
+                  </span>
                 </div>
+                <Link
+                  href="/courses"
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all group-hover:scale-105 ${
+                    level.highlighted
+                      ? "bg-white text-primary"
+                      : "bg-primary-50 border border-primary-100 text-primary hover:bg-primary hover:text-white"
+                  }`}
+                >
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
           </motion.div>

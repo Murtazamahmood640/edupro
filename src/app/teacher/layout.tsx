@@ -4,137 +4,180 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  GraduationCap, LayoutDashboard, BookOpen, PlusCircle, Brain, Users,
-  Calendar, User, Bell, ChevronLeft, ChevronRight, LogOut, Settings, Menu, BarChart3
+  GraduationCap,
+  LayoutDashboard,
+  BookOpen,
+  PlusCircle,
+  Brain,
+  Users,
+  Calendar,
+  User,
+  Bell,
+  LogOut,
+  Settings,
+  Menu,
+  X,
+  BarChart3,
+  Sparkles
 } from "lucide-react";
 
 const navItems = [
-  { label: "Dashboard", href: "/teacher/dashboard", icon: LayoutDashboard },
-  { label: "My Courses", href: "/teacher/courses", icon: BookOpen },
-  { label: "Create Course", href: "/teacher/courses/create", icon: PlusCircle },
-  { label: "Quizzes", href: "/teacher/quizzes", icon: Brain },
-  { label: "Students", href: "/teacher/students", icon: Users },
-  { label: "Appointments", href: "/teacher/appointments", icon: Calendar },
-  { label: "Analytics", href: "/teacher/dashboard", icon: BarChart3 },
-  { label: "Profile", href: "/teacher/profile", icon: User },
+  { label: "Overview",    href: "/teacher/dashboard",    icon: LayoutDashboard },
+  { label: "Courses",     href: "/teacher/courses",      icon: BookOpen },
+  { label: "Examinations", href: "/teacher/quizzes",      icon: Brain },
+  { label: "Academics",   href: "/teacher/students",     icon: Users },
+  { label: "Schedule",    href: "/teacher/appointments", icon: Calendar },
+  { label: "Insights",    href: "/teacher/analytics",    icon: BarChart3 },
 ];
 
 export default function TeacherLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const SidebarContent = () => (
-    <div className="flex flex-col h-full">
-      <div className={`flex items-center gap-3 px-5 py-6 border-b border-slate-700 ${collapsed ? "justify-center" : ""}`}>
-        <div className="bg-edu-indigo p-2 rounded-xl flex-shrink-0">
-          <GraduationCap className="w-6 h-6 text-white" />
-        </div>
-        {!collapsed && (
-          <span className="font-display text-xl font-bold text-white tracking-tight">
-            Edu<span className="text-indigo-400">Pro</span>
-          </span>
-        )}
-      </div>
-
-      {!collapsed && (
-        <div className="px-5 py-4 border-b border-slate-700">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-edu-indigo to-edu-violet flex items-center justify-center font-bold text-white text-sm flex-shrink-0">S</div>
-            <div className="overflow-hidden">
-              <p className="text-white font-bold text-sm truncate">Sarah Jenkins</p>
-              <span className="inline-flex items-center px-2 py-0.5 bg-edu-emerald/20 text-edu-emerald text-xs rounded-full font-medium">Verified Teacher</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-        {navItems.map(({ label, href, icon: Icon }) => {
-          const active = pathname === href || (href !== "/teacher/dashboard" && pathname.startsWith(href));
-          return (
-            <Link
-              key={label}
-              href={href}
-              onClick={() => setMobileOpen(false)}
-              title={collapsed ? label : undefined}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group ${
-                active
-                  ? "bg-edu-indigo text-white"
-                  : "text-slate-400 hover:bg-slate-700/50 hover:text-white"
-              } ${collapsed ? "justify-center" : ""}`}
-            >
-              <Icon className="w-5 h-5 flex-shrink-0" />
-              {!collapsed && <span className="text-sm font-medium">{label}</span>}
-              {!collapsed && active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white" />}
-            </Link>
-          );
-        })}
-      </nav>
-
-      <div className={`px-3 py-4 border-t border-slate-700 space-y-1 ${collapsed ? "flex flex-col items-center" : ""}`}>
-        <Link href="/teacher/profile" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all ${collapsed ? "justify-center" : ""}`}>
-          <Settings className="w-5 h-5 flex-shrink-0" />
-          {!collapsed && <span className="text-sm font-medium">Settings</span>}
-        </Link>
-        <Link href="/" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-red-500/20 hover:text-red-400 transition-all ${collapsed ? "justify-center" : ""}`}>
-          <LogOut className="w-5 h-5 flex-shrink-0" />
-          {!collapsed && <span className="text-sm font-medium">Log Out</span>}
-        </Link>
-      </div>
-    </div>
-  );
+  const isActive = (href: string) =>
+    pathname === href || (href !== "/teacher/dashboard" && pathname.startsWith(href));
 
   return (
-    <div className="flex h-screen bg-slate-100 overflow-hidden">
-      {/* Desktop Sidebar */}
-      <aside
-        className={`hidden lg:flex flex-col flex-shrink-0 bg-slate-900 transition-all duration-300 ${
-          collapsed ? "w-[72px]" : "w-64"
-        }`}
-      >
-        <SidebarContent />
-      </aside>
+    <div className="min-h-screen bg-gray-50 flex flex-col bg-box-pattern">
 
-      {/* Mobile Sidebar */}
-      {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 flex">
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-          <aside className="relative z-10 w-64 bg-slate-900 flex flex-col h-full">
-            <SidebarContent />
-          </aside>
-        </div>
-      )}
-
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex-shrink-0 h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-6">
-          <div className="flex items-center gap-3">
-            <button onClick={() => setMobileOpen(true)} className="lg:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-lg">
-              <Menu className="w-5 h-5" />
-            </button>
-            <button onClick={() => setCollapsed(!collapsed)} className="hidden lg:flex p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 rounded-lg transition-colors">
-              {collapsed ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
-            </button>
-            <div>
-              <p className="text-xs text-slate-400 font-medium">Teacher Portal</p>
-              <p className="text-sm text-slate-700 font-bold">EduPro Academy</p>
+      {/* ── Top Navigation Bar (Teacher Portal) ────────── */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
+        {/* Brand row */}
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 border-b border-gray-50">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:rotate-6 transition-transform">
+              <GraduationCap className="w-6 h-6 text-white" />
             </div>
-          </div>
+            <div className="leading-none">
+              <span className="font-black text-xl text-gray-900">Edu<span className="text-primary">Pro</span></span>
+              <span className="block text-[8px] font-bold uppercase tracking-[0.3em] text-primary/40 mt-0.5">Faculty Portal</span>
+            </div>
+          </Link>
 
-          <div className="flex items-center gap-3">
-            <button className="relative p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-colors">
+          {/* Right side icons */}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-primary-50 rounded-lg border border-primary-100">
+              <Sparkles className="w-3 h-3 text-primary" />
+              <span className="text-[9px] font-black uppercase tracking-widest text-primary">Academic Excellence</span>
+            </div>
+
+            <button className="relative p-2.5 text-gray-400 hover:text-primary hover:bg-primary-50 rounded-xl transition-all">
               <Bell className="w-5 h-5" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-edu-amber rounded-full" />
+              <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white" />
             </button>
-            <Link href="/" className="text-xs text-slate-500 hover:text-edu-indigo font-medium hidden sm:block">← Back to Site</Link>
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-edu-indigo to-edu-violet flex items-center justify-center font-bold text-white text-sm">S</div>
-          </div>
-        </header>
 
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
+            <div className="h-8 w-[1px] bg-gray-100" />
+
+            {/* Teacher chip */}
+            <div className="flex items-center gap-3 pl-2">
+              <div className="hidden sm:block text-right leading-none">
+                <p className="text-xs font-black text-gray-900">Sarah Jenkins</p>
+                <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Senior Instructor</p>
+              </div>
+              <div className="w-10 h-10 bg-gray-100 border border-gray-200 rounded-xl flex items-center justify-center font-black text-primary text-sm shadow-sm hover:border-primary transition-all cursor-pointer">
+                SJ
+              </div>
+            </div>
+
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden p-2.5 text-gray-600 hover:bg-gray-100 rounded-xl transition-colors"
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Nav links row — Center Aligned Desktop */}
+        <nav className="hidden lg:flex items-center justify-center gap-1 px-6 h-14">
+          <div className="flex items-center gap-1">
+            {navItems.map(({ label, href, icon: Icon }) => {
+              const active = isActive(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                    active
+                      ? "bg-primary text-white shadow-xl shadow-primary/20"
+                      : "text-gray-400 hover:text-primary hover:bg-primary-50"
+                  }`}
+                >
+                  <Icon className={`w-4 h-4 flex-shrink-0 transition-colors ${active ? "text-white" : "text-gray-400 group-hover:text-primary"}`} />
+                  {label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Absolute positioned actions to keep links centered */}
+          <div className="absolute right-8 flex items-center gap-3">
+            <Link
+              href="/teacher/courses/create"
+              className="flex items-center gap-2 px-5 py-2.5 bg-primary-50 text-primary border border-primary-100 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-sm"
+            >
+              <PlusCircle className="w-4 h-4" />
+              Create
+            </Link>
+            <div className="h-8 w-[1px] bg-gray-100" />
+            <Link
+              href="/"
+              className="p-2.5 text-gray-400 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all"
+              title="Logout"
+            >
+              <LogOut className="w-4 h-4" />
+            </Link>
+          </div>
+        </nav>
+
+        {/* Mobile nav dropdown */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.nav 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="lg:hidden border-t border-gray-100 bg-white px-4 py-4 grid grid-cols-2 gap-2"
+            >
+              {navItems.map(({ label, href, icon: Icon }) => {
+                const active = isActive(href);
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                      active
+                        ? "bg-primary text-white"
+                        : "text-gray-600 hover:text-primary hover:bg-primary-50"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    {label}
+                  </Link>
+                );
+              })}
+              <Link
+                href="/teacher/courses/create"
+                onClick={() => setMobileOpen(false)}
+                className="col-span-2 flex items-center justify-center gap-3 py-4 bg-primary text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-primary/20 mt-2"
+              >
+                <PlusCircle className="w-5 h-5" />
+                Create New Content
+              </Link>
+            </motion.nav>
+          )}
+        </AnimatePresence>
+      </header>
+
+      {/* ── Page Content ───────────────────────────────── */}
+      <main className="flex-1 overflow-y-auto relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {children}
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${poppins.variable} font-sans antialiased text-slate-900 selection:bg-edu-indigo/20 selection:text-edu-indigo bg-slate-50/50`}>
+      <body className={`${inter.variable} ${poppins.variable} font-sans antialiased text-edu-slate-900 selection:bg-edu-indigo/20 selection:text-edu-indigo bg-white`}>
         <CustomCursor />
         <AnimatedBackground />
         {children}

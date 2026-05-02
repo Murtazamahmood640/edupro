@@ -3,143 +3,135 @@
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Image from "next/image";
-import { Star, MessageCircle, ArrowRight, Award, Linkedin, Share2, Globe } from "lucide-react";
-
+import { Star, Award, Linkedin, Share2, Globe, Sparkles, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-const trainers = [
-  {
-    name: "Dr. John Smith",
-    role: "Senior Software Engineer at Google",
-    specialty: "Web Development & Cloud",
-    bio: "With over 15 years of experience in full-stack development, John has helped thousands of students master the web.",
-    rating: 4.9,
-    reviews: 1240,
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600&h=800",
-  },
-  {
-    name: "Sarah Jenkins",
-    role: "Lead UI/UX Designer at Figma",
-    specialty: "Product Design & Research",
-    bio: "Sarah is a design visionary who believes that good design is invisible. She teaches the art of user-centric creation.",
-    rating: 5.0,
-    reviews: 890,
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600&h=800",
-  },
-  {
-    name: "Alex Rivera",
-    role: "Data Scientist at Meta",
-    specialty: "AI & Machine Learning",
-    bio: "Alex breaks down complex algorithms into simple, understandable concepts for anyone to grasp.",
-    rating: 4.8,
-    reviews: 1560,
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600&h=800",
-  },
-  {
-    name: "Emily Davis",
-    role: "Digital Marketing Head at Netflix",
-    specialty: "Growth Marketing & SEO",
-    bio: "Emily has managed multi-million dollar marketing campaigns and shares her secrets to digital growth.",
-    rating: 4.9,
-    reviews: 2100,
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600&h=800",
-  },
-];
+import { TEACHERS } from "@/lib/data";
 
 const TrainersPage = () => {
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50/50">
+    <main className="min-h-screen flex flex-col bg-white selection:bg-primary selection:text-white">
       <Navbar />
 
-      <section className="pt-32 pb-20 bg-white overflow-hidden relative border-b border-slate-100">
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-edu-violet/5 blur-3xl rounded-full -translate-x-1/4 -translate-y-1/4" />
+      {/* ── Light Hero Section with Box Pattern ── */}
+      <section className="pt-36 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-white relative border-b border-gray-100 bg-box-pattern">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-center lg:text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 text-primary rounded-xl text-[10px] font-black uppercase tracking-widest mb-6 border border-primary-100"
+              >
+                <Award className="w-4 h-4" />
+                <span>Verified Academic Experts</span>
+              </motion.div>
+              <motion.h1 
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-8xl font-black text-gray-900 mb-8 tracking-tighter leading-[0.95]"
+              >
+                Learn from the <br />
+                <span className="text-primary">Global Elite</span>
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+              >
+                Direct access to world-renowned examiners, linguists, and subject matter specialists dedicated to your academic trajectory.
+              </motion.p>
+            </div>
+
+            {/* Right Visual */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-50 text-edu-indigo rounded-full mb-6"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="hidden lg:block relative"
             >
-              <Award className="w-4 h-4 fill-current" />
-              <span className="text-sm font-bold tracking-wider uppercase">EXPERT INSTRUCTORS</span>
+              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-[10px] border-white aspect-[4/3]">
+                <img 
+                  src="https://images.unsplash.com/photo-1544717297-fa95b3ee51f8?auto=format&fit=crop&q=80&w=1200&h=900" 
+                  alt="Elite Educators" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-primary/5" />
+              </div>
+              {/* Badge bubble */}
+              <div className="absolute -top-8 -right-8 bg-white border border-gray-100 p-6 rounded-2xl shadow-2xl flex items-center gap-4">
+                <div className="w-12 h-12 bg-primary-50 border border-primary-100 rounded-xl flex items-center justify-center">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest">Global Faculty</p>
+                  <p className="text-xl font-black text-primary leading-none mt-1">250+</p>
+                </div>
+              </div>
             </motion.div>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="heading-h1 mb-6"
-            >
-              Our Best <span className="text-edu-indigo">Trainers</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-slate-600 text-lg leading-relaxed"
-            >
-              Learn from the world's most experienced professionals who are passionate about sharing their knowledge and helping you grow.
-            </motion.p>
           </div>
         </div>
       </section>
 
-      <section className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {trainers.map((trainer, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-100/50 flex flex-col md:flex-row gap-8 items-center md:items-start"
-            >
-              <div className="relative w-48 h-64 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
-                <img src={trainer.image} alt={trainer.name} className="object-cover w-full h-full" />
-              </div>
-
-              <div className="flex-grow space-y-4">
-                <div>
-                  <h3 className="heading-h3 text-2xl mb-1">{trainer.name}</h3>
-                  <p className="text-edu-indigo font-bold">{trainer.role}</p>
+      {/* ── Trainer Grid ── */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {TEACHERS.map((trainer, index) => (
+              <motion.div
+                key={trainer.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-2xl hover:border-primary/10 transition-all flex flex-col lg:flex-row gap-10 items-start group"
+              >
+                <div className="relative w-full lg:w-56 h-72 lg:h-72 rounded-[2rem] overflow-hidden flex-shrink-0 shadow-xl border-4 border-white group-hover:rotate-2 transition-transform duration-500">
+                  <img src={trainer.image} alt={trainer.name} className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center text-edu-amber">
-                    <Star className="w-4 h-4 fill-current" />
-                    <span className="ml-1 font-bold text-slate-900">{trainer.rating}</span>
+
+                <div className="flex-grow space-y-5">
+                  <div>
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <h3 className="text-2xl font-black text-gray-900 tracking-tight">{trainer.name}</h3>
+                      <Sparkles className="w-5 h-5 text-primary/20" />
+                    </div>
+                    <p className="text-primary font-black uppercase tracking-[0.2em] text-[10px] bg-primary-50 w-fit px-4 py-1.5 rounded-lg border border-primary-100">{trainer.role}</p>
                   </div>
-                  <span className="text-slate-300">|</span>
-                  <span className="text-sm text-slate-500 font-medium">{trainer.reviews} Reviews</span>
-                </div>
-
-                <p className="text-slate-600 leading-relaxed">
-                  {trainer.bio}
-                </p>
-
-                <div className="flex items-center justify-between pt-4 border-t border-slate-50">
-                  <div className="flex space-x-3">
-                    <a href="#" className="p-2 bg-slate-50 rounded-lg text-slate-400 hover:text-edu-indigo transition-colors">
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                    <a href="#" className="p-2 bg-slate-50 rounded-lg text-slate-400 hover:text-edu-indigo transition-colors">
-                      <Share2 className="w-4 h-4" />
-
-                    </a>
-                    <a href="#" className="p-2 bg-slate-50 rounded-lg text-slate-400 hover:text-edu-indigo transition-colors">
-                      <Globe className="w-4 h-4" />
-                    </a>
+                  
+                  <div className="flex items-center space-x-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                    <div className="flex items-center gap-1.5 text-amber-500">
+                      <Star className="w-4 h-4 fill-current" />
+                      <span className="text-gray-900 text-sm font-black">{trainer.rating}</span>
+                    </div>
+                    <div className="w-1.5 h-1.5 bg-gray-100 rounded-full" />
+                    <span>{trainer.reviews.toLocaleString()} Elite Reviews</span>
                   </div>
-                  <Link href={`/trainers/${index}`} className="btn-primary py-2 px-6 text-sm">
-                    View Profile
-                  </Link>
+
+                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 font-medium">
+                    {trainer.bio}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-8 border-t border-gray-50">
+                    <div className="flex space-x-2">
+                      {[Linkedin, Globe, Share2].map((Icon, i) => (
+                        <button key={i} className="w-10 h-10 flex items-center justify-center bg-gray-50 text-gray-400 hover:text-primary hover:bg-primary-50 rounded-xl transition-all">
+                          <Icon className="w-5 h-5" />
+                        </button>
+                      ))}
+                    </div>
+                    <Link href={`/trainers/${trainer.id}`} className="inline-flex items-center gap-3 bg-primary text-white px-8 py-3.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-xl shadow-primary/20 hover:bg-primary-600 transition-all active:scale-95 group/btn">
+                      View Profile
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

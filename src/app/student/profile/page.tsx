@@ -1,151 +1,227 @@
 "use client";
 
 import React, { useState } from "react";
-import { User, Mail, Phone, Lock, Bell, Camera, ShieldCheck, Eye, EyeOff, Globe } from "lucide-react";
+import { 
+  User, Mail, Phone, Lock, Bell, Camera, 
+  ShieldCheck, Eye, EyeOff, Globe, Edit3, 
+  Settings, CreditCard, LogOut 
+} from "lucide-react";
+import { motion } from "framer-motion";
+import SlideOver from "@/components/ui/SlideOver";
 
 export default function StudentProfile() {
   const [tab, setTab] = useState<"personal" | "security" | "notifications">("personal");
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  
   const [showOld, setShowOld] = useState(false);
   const [showNew, setShowNew] = useState(false);
 
   return (
-    <div className="max-w-3xl space-y-6">
-      <div>
-        <h1 className="font-display text-2xl font-bold text-slate-900">Profile Settings</h1>
-        <p className="text-slate-500 text-sm mt-1">Manage your personal information and preferences</p>
-      </div>
-
-      {/* Avatar */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 flex items-center gap-6">
-        <div className="relative">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-edu-indigo to-edu-violet flex items-center justify-center text-white font-display font-bold text-3xl">
-            J
-          </div>
-          <button className="absolute bottom-0 right-0 w-7 h-7 bg-slate-900 rounded-full flex items-center justify-center hover:bg-edu-indigo transition-colors">
-            <Camera className="w-3.5 h-3.5 text-white" />
-          </button>
-        </div>
+    <div className="max-w-4xl space-y-8">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h2 className="font-display text-xl font-bold text-slate-900">John Doe</h2>
-          <p className="text-slate-500 text-sm">john.doe@example.com</p>
-          <span className="inline-flex items-center gap-1 mt-2 px-2.5 py-1 bg-indigo-50 text-edu-indigo text-xs font-bold rounded-full">
-            <ShieldCheck className="w-3 h-3" /> Student Account
-          </span>
+          <h1 className="text-xl md:text-2xl font-black text-gray-900 tracking-tight">Account Settings</h1>
+          <p className="text-gray-500 text-xs md:text-sm mt-1">Manage your identity, security, and learning preferences</p>
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex gap-1 bg-slate-100 p-1.5 rounded-2xl">
-        {(["personal", "security", "notifications"] as const).map((t) => (
-          <button
-            key={t}
-            onClick={() => setTab(t)}
-            className={`flex-1 py-2.5 rounded-xl text-sm font-bold capitalize transition-all ${
-              tab === t ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
-            }`}
-          >
-            {t}
-          </button>
-        ))}
-      </div>
-
-      {tab === "personal" && (
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-5">
-          <h3 className="font-display font-bold text-slate-900">Personal Information</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-sm font-bold text-slate-700 mb-1.5 block">First Name</label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
-                <input defaultValue="John" className="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-edu-indigo/20 focus:border-edu-indigo" />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        {/* Left Column: Profile Card & Tabs */}
+        <div className="space-y-6 lg:col-span-1">
+          {/* Avatar Card */}
+          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center">
+            <div className="relative inline-block mb-4">
+              <div className="w-24 h-24 rounded-2xl bg-primary flex items-center justify-center text-white font-black text-3xl shadow-xl shadow-primary/20">
+                J
               </div>
+              <button className="absolute -bottom-2 -right-2 w-8 h-8 bg-white border border-gray-100 rounded-lg flex items-center justify-center shadow-lg hover:text-primary transition-all">
+                <Camera className="w-4 h-4" />
+              </button>
             </div>
-            <div>
-              <label className="text-sm font-bold text-slate-700 mb-1.5 block">Last Name</label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
-                <input defaultValue="Doe" className="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-edu-indigo/20 focus:border-edu-indigo" />
-              </div>
-            </div>
-            <div>
-              <label className="text-sm font-bold text-slate-700 mb-1.5 block">Email Address</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
-                <input defaultValue="john.doe@example.com" className="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-edu-indigo/20 focus:border-edu-indigo" />
-              </div>
-            </div>
-            <div>
-              <label className="text-sm font-bold text-slate-700 mb-1.5 block">Phone Number</label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
-                <input defaultValue="+1 555 123 4567" className="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-edu-indigo/20 focus:border-edu-indigo" />
-              </div>
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-sm font-bold text-slate-700 mb-1.5 block">Website / LinkedIn</label>
-              <div className="relative">
-                <Globe className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
-                <input placeholder="https://linkedin.com/in/..." className="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-edu-indigo/20 focus:border-edu-indigo" />
-              </div>
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-sm font-bold text-slate-700 mb-1.5 block">Bio</label>
-              <textarea defaultValue="Passionate learner exploring UI/UX design and web development." rows={3}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-edu-indigo/20 focus:border-edu-indigo resize-none" />
+            <h2 className="text-lg font-black text-gray-900">John Doe</h2>
+            <p className="text-xs font-semibold text-gray-400 mb-4">john.doe@edupro.com</p>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-50 text-primary text-[10px] font-black uppercase tracking-widest rounded-md border border-primary-100">
+              <ShieldCheck className="w-3 h-3" />
+              Verified Student
             </div>
           </div>
-          <button className="px-6 py-3 bg-edu-indigo text-white text-sm font-bold rounded-xl hover:bg-edu-indigo/90 transition-all">Save Changes</button>
-        </div>
-      )}
 
-      {tab === "security" && (
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-5">
-          <h3 className="font-display font-bold text-slate-900">Change Password</h3>
-          {[
-            { label: "Current Password", show: showOld, toggle: () => setShowOld(!showOld) },
-            { label: "New Password", show: showNew, toggle: () => setShowNew(!showNew) },
-            { label: "Confirm New Password", show: showNew, toggle: () => setShowNew(!showNew) },
-          ].map((field, i) => (
-            <div key={i}>
-              <label className="text-sm font-bold text-slate-700 mb-1.5 block">{field.label}</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
-                <input type={field.show ? "text" : "password"} placeholder="••••••••"
-                  className="w-full pl-9 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-edu-indigo/20 focus:border-edu-indigo" />
-                <button type="button" onClick={field.toggle} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
-                  {field.show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+          {/* Navigation Tabs */}
+          <nav className="space-y-1">
+            {[
+              { id: "personal", label: "Personal Info", icon: User },
+              { id: "security", label: "Security", icon: Lock },
+              { id: "notifications", label: "Notifications", icon: Bell },
+            ].map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id as any)}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-bold transition-all ${
+                  tab === t.id 
+                    ? "bg-primary text-white shadow-lg shadow-primary/10" 
+                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                }`}
+              >
+                <t.icon className="w-4 h-4" />
+                {t.label}
+              </button>
+            ))}
+          </nav>
+
+          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-bold text-red-500 hover:bg-red-50 transition-all">
+            <LogOut className="w-4 h-4" />
+            Sign Out
+          </button>
+        </div>
+
+        {/* Right Column: Settings Form */}
+        <div className="lg:col-span-2">
+          {tab === "personal" && (
+            <motion.div
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 md:p-8"
+            >
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-50">
+                <div>
+                  <h3 className="text-lg font-black text-gray-900 tracking-tight">Personal Details</h3>
+                  <p className="text-xs text-gray-400 font-medium">Basic information used across the platform</p>
+                </div>
+                <button 
+                  onClick={() => setIsEditOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-50 text-gray-600 hover:text-primary border border-gray-100 rounded-lg text-xs font-bold transition-all"
+                >
+                  <Edit3 className="w-3.5 h-3.5" />
+                  Edit
                 </button>
               </div>
-            </div>
-          ))}
-          <button className="px-6 py-3 bg-edu-indigo text-white text-sm font-bold rounded-xl hover:bg-edu-indigo/90 transition-all">Update Password</button>
-        </div>
-      )}
 
-      {tab === "notifications" && (
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-4">
-          <h3 className="font-display font-bold text-slate-900">Notification Preferences</h3>
-          {[
-            { label: "New course announcements", desc: "Get notified when instructors post updates", on: true },
-            { label: "Quiz reminders", desc: "Reminder before a quiz deadline", on: true },
-            { label: "Appointment confirmations", desc: "Email when a session is booked or cancelled", on: true },
-            { label: "Certificate earned", desc: "Celebrate when you complete a course", on: true },
-            { label: "Weekly progress report", desc: "Summary of your learning activity", on: false },
-            { label: "Promotional emails", desc: "New courses, discounts and platform news", on: false },
-          ].map((notif, i) => (
-            <div key={i} className="flex items-center justify-between py-3 border-b border-slate-100 last:border-0">
-              <div>
-                <p className="text-sm font-bold text-slate-900">{notif.label}</p>
-                <p className="text-xs text-slate-400">{notif.desc}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                <div>
+                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mb-1">Full Name</p>
+                  <p className="text-sm font-bold text-gray-900">John Doe</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mb-1">Email</p>
+                  <p className="text-sm font-bold text-gray-900">john.doe@edupro.com</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mb-1">Phone</p>
+                  <p className="text-sm font-bold text-gray-900">+92 300 1234567</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mb-1">Language</p>
+                  <p className="text-sm font-bold text-gray-900">English (US)</p>
+                </div>
+                <div className="md:col-span-2">
+                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mb-1">Bio</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Passionate student currently pursuing A Levels. Focused on Mathematics and Physics with a keen interest in Computer Science and Engineering.
+                  </p>
+                </div>
               </div>
-              <div className={`w-11 h-6 rounded-full transition-colors cursor-pointer relative ${notif.on ? "bg-edu-indigo" : "bg-slate-200"}`}>
-                <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-all ${notif.on ? "right-0.5" : "left-0.5"}`} />
+            </motion.div>
+          )}
+
+          {tab === "security" && (
+            <motion.div
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 md:p-8"
+            >
+              <h3 className="text-lg font-black text-gray-900 tracking-tight mb-8">Update Password</h3>
+              <div className="space-y-4 max-w-md">
+                {[
+                  { label: "Current Password", show: showOld, toggle: () => setShowOld(!showOld) },
+                  { label: "New Password", show: showNew, toggle: () => setShowNew(!showNew) },
+                ].map((field, i) => (
+                  <div key={i}>
+                    <label className="text-xs font-bold text-gray-500 mb-1.5 block">{field.label}</label>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+                      <input 
+                        type={field.show ? "text" : "password"} 
+                        placeholder="••••••••"
+                        className="w-full pl-9 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all" 
+                      />
+                      <button type="button" onClick={field.toggle} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
+                        {field.show ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                <button className="w-full py-3 bg-primary text-white text-xs font-black uppercase tracking-widest rounded-lg hover:bg-primary-600 transition-all shadow-lg shadow-primary/20">
+                  Update Security
+                </button>
               </div>
-            </div>
-          ))}
-          <button className="px-6 py-3 bg-edu-indigo text-white text-sm font-bold rounded-xl hover:bg-edu-indigo/90 transition-all">Save Preferences</button>
+            </motion.div>
+          )}
+
+          {tab === "notifications" && (
+            <motion.div
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 md:p-8"
+            >
+              <h3 className="text-lg font-black text-gray-900 tracking-tight mb-8">Notification Settings</h3>
+              <div className="space-y-4">
+                {[
+                  { label: "New course updates", desc: "Get notified when your trainers upload content", on: true },
+                  { label: "Quiz reminders", desc: "Never miss a deadline for your assessments", on: true },
+                  { label: "Direct messages", desc: "Notifications when trainers reply to your queries", on: false },
+                ].map((notif, i) => (
+                  <div key={i} className="flex items-center justify-between py-4 border-b border-gray-50 last:border-0">
+                    <div className="max-w-xs">
+                      <p className="text-sm font-bold text-gray-900">{notif.label}</p>
+                      <p className="text-[10px] text-gray-400 font-medium">{notif.desc}</p>
+                    </div>
+                    <div className={`w-10 h-5 rounded-full cursor-pointer relative transition-colors ${notif.on ? "bg-primary" : "bg-gray-200"}`}>
+                      <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-all ${notif.on ? "right-0.5" : "left-0.5"}`} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
-      )}
+      </div>
+
+      {/* SlideOver Form */}
+      <SlideOver 
+        isOpen={isEditOpen} 
+        onClose={() => setIsEditOpen(false)}
+        title="Edit Personal Information"
+        description="Your details will be updated across all portals"
+      >
+        <div className="space-y-6">
+          <div className="space-y-4">
+            <div>
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5 block">Full Name</label>
+              <input defaultValue="John Doe" className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary" />
+            </div>
+            <div>
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5 block">Email Address</label>
+              <input defaultValue="john.doe@edupro.com" className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary" />
+            </div>
+            <div>
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5 block">Bio</label>
+              <textarea rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary resize-none" />
+            </div>
+          </div>
+          <div className="pt-6 border-t border-gray-50 flex gap-3">
+            <button 
+              onClick={() => setIsEditOpen(false)}
+              className="flex-1 py-3 bg-gray-50 text-gray-500 text-xs font-black uppercase tracking-widest rounded-xl hover:bg-gray-100 transition-all"
+            >
+              Cancel
+            </button>
+            <button className="flex-1 py-3 bg-primary text-white text-xs font-black uppercase tracking-widest rounded-xl hover:bg-primary-600 transition-all shadow-lg shadow-primary/20">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </SlideOver>
     </div>
   );
 }
