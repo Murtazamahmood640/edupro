@@ -3,7 +3,7 @@
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Star, Award, Linkedin, Share2, Globe, Sparkles, Users } from "lucide-react";
+import { Star, Award, Linkedin, Share2, Globe, Sparkles, Users, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { TEACHERS } from "@/lib/data";

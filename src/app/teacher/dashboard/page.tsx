@@ -15,7 +15,8 @@ import {
   Bell,
   Sparkles,
   ArrowUpRight,
-  ArrowRight
+  ArrowRight,
+  Zap
 } from "lucide-react";
 import { motion } from "framer-motion";
 

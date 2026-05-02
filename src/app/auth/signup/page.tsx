@@ -49,7 +49,7 @@ export default function SignupPage() {
             <span>Join the Elite</span>
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight tracking-tight">
-            Start Your <br /><span className="text-primary underline decoration-primary/10 decoration-8 underline-offset-8">Academic Journey</span>
+            Start Your <br /><span className="text-primary">Academic Journey</span>
           </h2>
           <p className="text-gray-500 text-lg font-medium leading-relaxed max-w-md mb-12">
             Unlock professional tools, expert mentorship, and a global community of high-achievers.

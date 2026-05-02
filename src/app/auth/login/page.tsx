@@ -44,7 +44,7 @@ export default function LoginPage() {
             <span>Secure Access</span>
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight tracking-tight">
-            Elevate Your <br /><span className="text-primary underline decoration-primary/10 decoration-8 underline-offset-8">Academic Trajectory</span>
+            Elevate Your <br /><span className="text-primary">Academic Trajectory</span>
           </h2>
           <p className="text-gray-500 text-lg font-medium leading-relaxed max-w-md mb-12">
             Join the elite circle of global learners and top-tier educators in our professional academic environment.
