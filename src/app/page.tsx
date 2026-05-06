@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Navbar from "@/components/layout/Navbar";
+import NavbarV2 from "@/components/layout/NavbarV2";
 import Hero from "@/components/home/Hero";
 import FeaturedCourses from "@/components/home/FeaturedCourses";
 import WhyChoose from "@/components/home/WhyChoose";
@@ -24,7 +24,7 @@ const stats = [
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-br from-white via-white to-primary-50/20">
-      <Navbar />
+      <NavbarV2 />
       <Hero />
 
       {/* ── Stats Bar ───────────────────────────────────── */}
