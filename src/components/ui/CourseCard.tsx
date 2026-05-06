@@ -44,11 +44,15 @@ const CourseCard: React.FC<CourseCardProps> = ({
       
       <div className="relative flex flex-col h-full">
         {/* Image Section */}
-        <div className="relative aspect-[16/10] overflow-hidden shrink-0 bg-gradient-to-br from-gray-100 to-gray-50">
+        <div className="relative aspect-[16/10] overflow-hidden shrink-0 bg-gradient-to-br from-primary-100 via-primary-50 to-blue-100">
           <img
             src={image}
             alt={title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            onError={(e) => {
+              const img = e.target as HTMLImageElement;
+              img.style.display = 'none';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
             <motion.div

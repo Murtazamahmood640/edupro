@@ -86,16 +86,22 @@ export default function StudentDashboard() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl hover:border-primary/20 transition-all group"
+            whileHover={{ y: -4, scale: 1.02 }}
+            className="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-primary/15 hover:border-primary/40 transition-all group relative overflow-hidden"
           >
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform bg-primary-50 text-primary border border-primary-100`}>
-              <stat.icon className="w-6 h-6" />
-            </div>
-            <p className="text-3xl font-black text-gray-900 tracking-tight mb-1">{stat.value}</p>
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{stat.label}</p>
-            <div className="flex items-center gap-2 text-[9px] font-black text-primary uppercase tracking-[0.2em] bg-primary-50 w-fit px-3 py-1.5 rounded-lg border border-primary-100">
-              <Zap className="w-3 h-3 fill-primary" />
-              {stat.sub}
+            {/* Gradient border on hover */}
+            <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            
+            <div className="relative z-10">
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all bg-gradient-to-br from-primary-50 to-primary-100 text-primary border border-primary-200`}>
+                <stat.icon className="w-6 h-6" />
+              </div>
+              <p className="text-3xl font-black text-gray-900 tracking-tight mb-1 group-hover:text-primary transition-colors">{stat.value}</p>
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4">{stat.label}</p>
+              <div className="flex items-center gap-2 text-[9px] font-black text-primary uppercase tracking-[0.2em] bg-gradient-to-r from-primary-50 to-blue-50 w-fit px-3 py-1.5 rounded-lg border border-primary-200 group-hover:border-primary-400 transition-colors">
+                <Zap className="w-3 h-3 fill-primary" />
+                {stat.sub}
+              </div>
             </div>
           </motion.div>
         ))}
@@ -117,9 +123,13 @@ export default function StudentDashboard() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + i * 0.1 }}
-                className="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 hover:border-primary/20 hover:shadow-2xl transition-all group"
+                whileHover={{ y: -2, scale: 1.01 }}
+                className="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/15 transition-all group relative overflow-hidden"
               >
-                <div className="w-16 h-16 bg-gray-50 border border-gray-100 rounded-2xl flex items-center justify-center shrink-0 shadow-sm group-hover:bg-primary transition-all group-hover:rotate-6">
+                {/* Gradient border on hover */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                
+                <div className="w-16 h-16 bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-2xl flex items-center justify-center shrink-0 shadow-md group-hover:shadow-lg group-hover:bg-primary transition-all group-hover:rotate-6 relative z-10">
                   <PlayCircle className="w-8 h-8 text-primary group-hover:text-white" />
                 </div>
                 <div className="flex-1 min-w-0">

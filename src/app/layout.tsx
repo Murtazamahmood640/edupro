@@ -22,6 +22,7 @@ import AnimatedBackground from "@/components/ui/AnimatedBackground";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { AnimatedGradientMesh } from "@/components/backgrounds/AnimatedGradientMesh";
 import { FloatingParticles } from "@/components/backgrounds/FloatingParticles";
+import { EducationThemeBackground } from "@/components/backgrounds/EducationThemeBackground";
 
 export default function RootLayout({
   children,
@@ -34,6 +35,7 @@ export default function RootLayout({
         <CustomCursor />
         <AnimatedGradientMesh />
         <FloatingParticles />
+        <EducationThemeBackground />
         <AnimatedBackground />
         {children}
       </body>

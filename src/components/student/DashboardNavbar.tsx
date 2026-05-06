@@ -80,12 +80,13 @@ export const DashboardNavbar = () => {
 
                     {/* Tooltip */}
                     <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      whileHover={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      whileHover={{ opacity: 1, y: 0, scale: 1 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded whitespace-nowrap pointer-events-none"
+                      className="absolute top-full mt-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gray-900 to-gray-800 text-white text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap pointer-events-none shadow-lg border border-gray-700 z-50"
                     >
                       {label}
+                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45" />
                     </motion.div>
                   </motion.div>
                 </Link>

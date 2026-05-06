@@ -30,7 +30,7 @@ const TrainersPage = () => {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-8xl font-black text-gray-900 mb-8 tracking-tighter leading-[0.95]"
+                className="text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 tracking-tight leading-tight"
               >
                 Learn from the <br />
                 <span className="text-primary">Global Elite</span>
@@ -52,11 +52,15 @@ const TrainersPage = () => {
               transition={{ duration: 1 }}
               className="hidden lg:block relative"
             >
-              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-[10px] border-white aspect-[4/3]">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border-4 border-white aspect-[4/3] bg-gradient-to-br from-primary-100 via-blue-50 to-indigo-100">
                 <img 
                   src="https://images.unsplash.com/photo-1544717297-fa95b3ee51f8?auto=format&fit=crop&q=80&w=1200&h=900" 
                   alt="Elite Educators" 
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    img.style.opacity = '0';
+                  }}
                 />
                 <div className="absolute inset-0 bg-primary/5" />
               </div>
