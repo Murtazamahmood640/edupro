@@ -27,7 +27,10 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="section-container">
+    <section className="section-container bg-gradient-to-b from-white via-primary-50/20 to-white relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute -top-40 right-1/4 w-[500px] h-[500px] bg-primary-100/30 rounded-full blur-3xl pointer-events-none animate-pulse" />
+      <div className="absolute -bottom-32 left-0 w-[400px] h-[400px] bg-primary-50/40 rounded-full blur-3xl pointer-events-none" style={{ animationDelay: "2s" }} />
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-14">
         <span className="badge-primary mb-4">Student Success Stories</span>
@@ -53,45 +56,69 @@ const Testimonials = () => {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
         {testimonials.map((t, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -8, scale: 1.02 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-white border border-edu-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-primary/8 transition-all duration-400 hover:-translate-y-1.5 flex flex-col"
+            className="bg-white/70 backdrop-blur-xl border border-edu-slate-100/60 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:shadow-primary/15 transition-all duration-400 flex flex-col hover:bg-white/90 relative group"
           >
-            {/* Quote icon */}
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center mb-6 shadow-md shadow-primary/20">
-              <Quote className="w-4 h-4 text-white fill-current" />
-            </div>
+            {/* Gradient border on hover */}
+            <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="relative z-10">
+              {/* Quote icon */}
+              <motion.div 
+                className="w-12 h-12 bg-gradient-to-br from-primary to-primary-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform"
+                whileHover={{ rotate: 10 }}
+              >
+                <Quote className="w-5 h-5 text-white fill-current" />
+              </motion.div>
 
-            {/* Stars */}
-            <div className="flex items-center gap-1 mb-5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-              ))}
-            </div>
+              {/* Stars */}
+              <motion.div 
+                className="flex items-center gap-1.5 mb-6"
+                initial={{ opacity: 0.7 }}
+                whileHover={{ opacity: 1 }}
+              >
+                {[...Array(5)].map((_, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ scale: 0.8 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    <Star className="w-4 h-4 text-amber-400 fill-current drop-shadow-sm" />
+                  </motion.div>
+                ))}
+              </motion.div>
 
-            {/* Text */}
-            <p className="text-edu-slate-600 text-sm leading-relaxed flex-1 mb-8">
-              &quot;{t.text}&quot;
-            </p>
+              {/* Text */}
+              <motion.p 
+                className="text-edu-slate-600 text-sm leading-relaxed flex-1 mb-8 font-medium"
+                initial={{ opacity: 0.8 }}
+                whileHover={{ opacity: 1 }}
+              >
+                &quot;{t.text}&quot;
+              </motion.p>
 
-            {/* Author */}
-            <div className="flex items-center gap-4 pt-6 border-t border-edu-slate-50">
-              <img
-                src={t.image}
-                alt={t.author}
-                className="w-12 h-12 rounded-xl object-cover border-2 border-primary-100"
-              />
-              <div>
-                <h4 className="font-bold text-edu-slate-900 text-sm">{t.author}</h4>
-                <p className="text-[11px] text-primary font-semibold uppercase tracking-wider mt-0.5">
-                  {t.role}
-                </p>
+              {/* Author */}
+              <div className="flex items-center gap-4 pt-6 border-t border-edu-slate-100/50">
+                <motion.img
+                  src={t.image}
+                  alt={t.author}
+                  className="w-12 h-12 rounded-xl object-cover border-3 border-primary-100 shadow-md group-hover:border-primary-200"
+                  whileHover={{ scale: 1.05 }}
+                />
+                <div>
+                  <h4 className="font-bold text-edu-slate-900 text-sm group-hover:text-primary transition-colors">{t.author}</h4>
+                  <p className="text-[11px] text-primary-600 font-semibold uppercase tracking-wider mt-0.5">
+                    {t.role}
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>

@@ -21,11 +21,14 @@ const Navbar = () => {
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 border-b ${
           scrolled
-            ? "bg-white/95 backdrop-blur-2xl border-gray-100 py-3 shadow-[0_4px_30px_rgba(0,35,102,0.05)]"
-            : "bg-transparent py-6 border-transparent"
+            ? "bg-white/90 backdrop-blur-2xl border-gray-100 py-3 shadow-[0_8px_40px_rgba(0,35,102,0.1)]"
+            : "bg-gradient-to-b from-white/50 to-transparent py-6 border-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,9 +97,8 @@ const Navbar = () => {
                 </div>
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+        )}
+      </AnimatePresence>
 
       {/* ── Search Overlay ── */}
       <AnimatePresence>
@@ -124,6 +126,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+    </motion.nav>
     </>
   );
 };

@@ -9,7 +9,10 @@ import { COURSES } from "@/lib/data";
 
 const FeaturedCourses = () => {
   return (
-    <section className="section-container bg-white">
+    <section className="section-container bg-gradient-to-b from-primary-50/30 to-white relative overflow-hidden">
+      {/* Decorative animated elements */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-primary-100/20 rounded-full blur-3xl pointer-events-none animate-pulse" />
+      <div className="absolute -bottom-32 left-1/4 w-[600px] h-[600px] bg-primary-50/30 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: "1s" }} />
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 text-primary rounded-lg text-[10px] font-black uppercase tracking-widest mb-4 border border-primary-100">

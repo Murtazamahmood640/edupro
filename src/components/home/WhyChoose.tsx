@@ -39,9 +39,10 @@ const progressItems = [
 
 const WhyChoose = () => {
   return (
-    <section className="bg-white py-24 relative overflow-hidden">
-      {/* Decorative blobs */}
-      <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-primary/5 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2 pointer-events-none" />
+    <section className="bg-gradient-to-br from-white via-primary-50/20 to-primary-100/10 py-24 relative overflow-hidden">
+      {/* Decorative animated blobs */}
+      <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-gradient-to-tl from-primary/15 to-primary/5 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2 pointer-events-none animate-pulse" />
+      <div className="absolute top-20 left-1/4 w-[35rem] h-[35rem] bg-primary-100/20 blur-3xl rounded-full pointer-events-none" style={{ animationDelay: "1s" }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -67,23 +68,32 @@ const WhyChoose = () => {
               theoretical mastery with strategic exam techniques.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary/20 hover:shadow-xl transition-all group"
+                  className="bg-white/60 backdrop-blur-xl border border-gray-100/50 rounded-2xl p-7 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 transition-all group relative overflow-hidden"
                 >
-                  <div className="w-12 h-12 bg-primary-50 border border-primary-100 rounded-lg flex items-center justify-center mb-5 group-hover:bg-primary transition-all">
-                    <div className="group-hover:text-white transition-colors">
-                      {feature.icon}
-                    </div>
+                  {/* Animated gradient on hover */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  
+                  <div className="relative z-10">
+                    <motion.div 
+                      className="w-12 h-12 bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-lg flex items-center justify-center mb-5 group-hover:shadow-lg group-hover:shadow-primary/20 transition-all"
+                      whileHover={{ rotate: 8, scale: 1.1 }}
+                    >
+                      <div className="text-primary group-hover:text-primary-700 transition-colors">
+                        {feature.icon}
+                      </div>
+                    </motion.div>
+                    <h3 className="font-bold text-gray-900 text-sm mb-2 group-hover:text-primary transition-colors">{feature.title}</h3>
+                    <p className="text-gray-500 text-xs leading-relaxed font-medium">{feature.description}</p>
                   </div>
-                  <h3 className="font-bold text-gray-900 text-sm mb-2">{feature.title}</h3>
-                  <p className="text-gray-400 text-xs leading-relaxed">{feature.description}</p>
                 </motion.div>
               ))}
             </div>

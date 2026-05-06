@@ -6,11 +6,24 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const Hero = () => {
+  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-white selection:bg-primary selection:text-white">
-      {/* ── Creative Professional Background ── */}
-      <div className="absolute inset-0 bg-box-pattern opacity-100 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[50rem] h-[50rem] bg-primary-50/50 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-gradient-to-br from-white via-white to-primary-50 selection:bg-primary selection:text-white">
+      {/* ── Animated gradient background ── */}
+      <div className="absolute inset-0 bg-box-pattern opacity-50 pointer-events-none" />
+      
+      {/* ── Multiple animated blobs ── */}
+      <div className="absolute top-0 right-0 w-[50rem] h-[50rem] bg-gradient-to-br from-primary-50/40 to-primary-100/20 blur-[120px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none animate-pulse" />
+      <div className="absolute bottom-0 -left-20 w-[40rem] h-[40rem] bg-gradient-to-tr from-primary-50/30 to-transparent blur-[100px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
