@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
 import CustomCursor from "@/components/ui/CustomCursor";
+import { AnimatedGradientMesh } from "@/components/backgrounds/AnimatedGradientMesh";
+import { FloatingParticles } from "@/components/backgrounds/FloatingParticles";
 
 export default function RootLayout({
   children,
@@ -28,8 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${poppins.variable} font-sans antialiased text-edu-slate-900 selection:bg-edu-indigo/20 selection:text-edu-indigo bg-white`}>
+      <body className={`${inter.variable} ${poppins.variable} font-sans antialiased text-edu-slate-900 selection:bg-edu-indigo/20 selection:text-edu-indigo bg-white relative`}>
         <CustomCursor />
+        <AnimatedGradientMesh />
+        <FloatingParticles />
         <AnimatedBackground />
         {children}
       </body>

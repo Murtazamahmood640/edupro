@@ -111,9 +111,9 @@ const Hero = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="relative hidden lg:block"
           >
-            <div className="relative z-10 rounded-[3rem] overflow-hidden border-[12px] border-white shadow-2xl shadow-primary/10 aspect-square">
+            <div className="relative z-10 rounded-2xl overflow-hidden border-4 border-white shadow-lg shadow-primary/10 w-full max-w-md h-80">
               <img 
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200&h=1200" 
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600&h=480" 
                 alt="Elite Student" 
                 className="w-full h-full object-cover"
               />
@@ -122,22 +122,22 @@ const Hero = () => {
 
             {/* Floating Achievement Card */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-10 -left-10 bg-white p-6 rounded-3xl shadow-2xl border border-gray-100 flex items-center gap-5 z-20"
+              className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-4 z-20"
             >
-              <div className="w-14 h-14 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                <CheckCircle2 className="w-8 h-8 text-white" />
+              <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center shadow-md shadow-emerald-500/20">
+                <CheckCircle2 className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest">Enrollment Status</p>
-                <p className="text-gray-900 font-black text-lg">Verified Elite Access</p>
+                <p className="text-gray-400 text-[9px] font-black uppercase tracking-widest">Status</p>
+                <p className="text-gray-900 font-black text-sm">Elite Access</p>
               </div>
             </motion.div>
 
             {/* Accent Shapes */}
-            <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -right-20 w-64 h-64 border-[32px] border-primary/5 rounded-full" />
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
+            <div className="absolute -bottom-16 -right-16 w-48 h-48 border-[24px] border-primary/5 rounded-full" />
           </motion.div>
         </div>
       </div>
