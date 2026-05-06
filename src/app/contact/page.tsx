@@ -31,7 +31,7 @@ const ContactPage = () => {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-8xl font-black text-gray-900 mb-8 tracking-tighter leading-none"
+                className="text-3xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight leading-tight"
               >
                 Get in Touch with <br />
                 <span className="text-primary">Our Support</span>

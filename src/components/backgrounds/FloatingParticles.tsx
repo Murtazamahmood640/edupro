@@ -35,8 +35,8 @@ export const FloatingParticles = () => {
         this.radius = Math.random() * 2 + 1;
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5;
-        this.targetOpacity = Math.random() * 0.3 + 0.1;
+        this.opacity = Math.random() * 0.2;
+        this.targetOpacity = Math.random() * 0.15 + 0.05;
       }
 
       update() {
@@ -52,12 +52,12 @@ export const FloatingParticles = () => {
         // Smooth opacity animation
         this.opacity += (this.targetOpacity - this.opacity) * 0.02;
         if (Math.abs(this.opacity - this.targetOpacity) < 0.01) {
-          this.targetOpacity = Math.random() * 0.3 + 0.1;
+          this.targetOpacity = Math.random() * 0.15 + 0.05;
         }
       }
 
       draw(context: CanvasRenderingContext2D) {
-        context.fillStyle = `rgba(0, 35, 102, ${this.opacity})`;
+        context.fillStyle = `rgba(100, 150, 220, ${this.opacity * 0.3})`;
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         context.fill();
@@ -112,8 +112,8 @@ export const FloatingParticles = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10"
-      style={{ background: 'transparent' }}
+      className="fixed inset-0 pointer-events-none"
+      style={{ background: 'transparent', zIndex: -100 }}
     />
   );
 };

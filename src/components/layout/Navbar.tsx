@@ -115,7 +115,7 @@ const Navbar = () => {
               <input 
                 autoFocus
                 placeholder="Search elite academy courses..."
-                className="w-full text-4xl md:text-8xl font-black text-gray-900 placeholder:text-gray-100 bg-transparent border-b-8 border-gray-50 focus:outline-none focus:border-primary transition-all pb-10 tracking-tighter"
+                className="w-full text-3xl md:text-6xl font-black text-gray-900 placeholder:text-gray-100 bg-transparent border-b-4 border-gray-50 focus:outline-none focus:border-primary transition-all pb-6 tracking-tight"
               />
               <div className="mt-16 flex flex-wrap justify-center gap-4">
                 {["Math O-Level", "German A1", "Python Mastery", "Digital Marketing"].map(tag => (
