@@ -1,15 +1,9 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React from "react";
 import { ArrowRight, Star, CheckCircle2, Play, Sparkles, Trophy, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-
-const HeroScene = dynamic(() => import("@/components/3d/HeroScene").then(mod => ({ default: mod.HeroScene })), {
-  ssr: false,
-  loading: () => <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 animate-pulse" />
-});
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
@@ -110,17 +104,20 @@ const Hero = () => {
             </motion.div>
           </div>
           
-          {/* Right Visuals - 3D Scene */}
+          {/* Right Visuals */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative hidden lg:block h-[600px]"
+            className="relative hidden lg:block"
           >
-            <div className="relative z-10 rounded-[3rem] overflow-hidden border-[12px] border-white shadow-2xl shadow-primary/20 h-full bg-white">
-              <Suspense fallback={<div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200" />}>
-                <HeroScene />
-              </Suspense>
+            <div className="relative z-10 rounded-[3rem] overflow-hidden border-[12px] border-white shadow-2xl shadow-primary/10 aspect-square">
+              <img 
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200&h=1200" 
+                alt="Elite Student" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
             </div>
 
             {/* Floating Achievement Card */}

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import NavbarV2 from "@/components/layout/NavbarV2";
+import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import FeaturedCourses from "@/components/home/FeaturedCourses";
 import WhyChoose from "@/components/home/WhyChoose";
@@ -9,6 +9,7 @@ import TrainersSection from "@/components/home/TrainersSection";
 import Testimonials from "@/components/home/Testimonials";
 import Levels from "@/components/home/Levels";
 import InteractivePaths from "@/components/home/InteractivePaths";
+import { ParallaxShowcase } from "@/components/home/ParallaxShowcase";
 import Footer from "@/components/layout/Footer";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -24,7 +25,7 @@ const stats = [
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-br from-white via-white to-primary-50/20">
-      <NavbarV2 />
+      <Navbar />
       <Hero />
 
       {/* ── Stats Bar ───────────────────────────────────── */}
@@ -62,6 +63,7 @@ export default function Home() {
       </section>
 
       <FeaturedCourses />
+      <ParallaxShowcase />
       <InteractivePaths />
       <WhyChoose />
       <Levels />

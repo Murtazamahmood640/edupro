@@ -75,9 +75,8 @@ export default function StudentQuizzes() {
       {/* Quiz Grid - Fixed Responsiveness */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
         {filtered.map((quiz, i) => {
-          const config = statusConfig[quiz.status] as typeof statusConfig[keyof typeof statusConfig] | undefined;
-          const finalConfig = config || { icon: Brain, color: "text-gray-400", bg: "bg-gray-50", label: quiz.status };
-          const StatusIcon = finalConfig.icon;
+          const config = statusConfig[quiz.status] || statusConfig["Locked"];
+          const StatusIcon = config.icon;
           const isActionable = quiz.status === "Not Started" || quiz.status === "In Progress" || quiz.status === "Failed";
 
           return (
@@ -89,8 +88,10 @@ export default function StudentQuizzes() {
               className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex flex-col h-full hover:border-primary/20 hover:shadow-md transition-all group"
             >
               <div className="flex items-start justify-between mb-4">
-                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${finalConfig.bg}`}>
-                  <StatusIcon className={`w-5 h-5 md:w-6 md:h-6 ${finalConfig.color}`} />
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${config.bg}`}>
+                  {React.createElement(StatusIcon, {
+                    className: `w-5 h-5 md:w-6 md:h-6 ${config.color}`,
+                  })}
                 </div>
                 {quiz.dueDate && (
                   <span className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider rounded-md ${quiz.dueDate === "Today" ? "bg-red-100 text-red-600" : "bg-amber-100 text-amber-700"}`}>
